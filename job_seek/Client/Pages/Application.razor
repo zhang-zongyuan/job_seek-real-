@@ -1,7 +1,14 @@
 ﻿@page "/application"
+@using job_seek.Shared
+@inject HttpClient Http
 
-<h1>Hello, world!</h1>
+<h1>Contacts</h1>
 
-Welcome to your new app.
+<p>Fetch data from server</p>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<table class="table">
+    <thread>
+    </thread>
+</table>
+
+<SurveyPrompt Title="Looking for a job?" />

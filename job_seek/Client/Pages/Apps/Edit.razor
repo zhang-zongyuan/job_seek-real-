@@ -1,0 +1,46 @@
+﻿@page "/apps/edit/{id:int}"
+
+@inject HttpClient _client
+
+@inject NavigationManager _navManager
+
+
+
+<h3>Edit Application</h3>
+
+
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditApp" app="app" />
+
+
+
+@code {
+
+    [Parameter] public int id { get; set; }
+
+    App app = new App();
+
+
+
+    protected async override Task OnParametersSetAsync()
+
+    {
+
+        app = await _client.GetFromJsonAsync<App>($"{Endpoints.AppsEndpoint}/{id}");
+
+    }
+
+
+
+    async Task EditApp()
+
+    {
+
+        await _client.PutAsJsonAsync($"{Endpoints.AppsEndpoint}/{id}", app);
+
+        _navManager.NavigateTo("/apps/");
+
+    }
+
+}
+}

@@ -1,0 +1,40 @@
+﻿@page "/descriptions/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Descriptions</h3>
+
+<hr />
+<br />
+
+<FormComponent ButtonText="Create Description" description="description" OnValidSubmit="@CreateDescription" />
+
+@*
+<EditForm Model="@description" OnValidSubmit="CreateDescription">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name: </label>
+        <div>
+            <InputText @bind-Value="@description.Name" class="form-control" />
+            <ValidationMessage For="@(() => description.Name)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create New Description
+    </button>
+</EditForm>
+*@
+
+@code {
+    Description description = new Description();
+
+    private async Task CreateDescription()
+    {
+        await _client.PostAsJsonAsync(Endpoints.DescriptionsEndpoint, description);
+        _navManager.NavigateTo("/descriptions/");
+    }
+
+}

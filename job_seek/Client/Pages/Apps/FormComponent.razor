@@ -1,0 +1,156 @@
+﻿@inject HttpClient _client
+
+
+
+<EditForm Model="@app" OnValidSubmit="@OnValidSubmit">
+
+    <DataAnnotationsValidator />
+
+    <ValidationSummary />
+
+    <fieldset disabled="@Disabled">
+
+        <div class="form-group">
+
+            <label>Job: </label>
+
+            <div>
+
+                <InputSelect @bind-Value="app.JobId" class="form-control">
+
+                    <option value="">-- Select Job --</option>
+
+                    @if (Jobs != null)
+
+                {
+
+                    foreach (var Job in Jobs)
+
+                    {
+
+                    <option value="@Job.Id">@Job.Make.Name @Job.Company.Name - @Job.Location </option>
+
+            }
+
+        }
+
+                </InputSelect>
+
+                <ValidationMessage For="@(() => app.JobId)" />
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Customer: </label>
+
+            <div>
+
+                <InputSelect @bind-Value="app.CustomerId" class="form-control">
+
+                    <option value="">-- Select Customer --</option>
+
+                    @if (Customers != null)
+
+                {
+
+                    foreach (var customer in Customers)
+
+                    {
+
+                    <option value="@customer.Id">@customer.FirstName - @customer.DrivingLicense </option>
+
+            }
+
+        }
+
+                </InputSelect>
+
+                <ValidationMessage For="@(() => app.CustomerId)" />
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Date Out: </label>
+
+            <div>
+
+                <InputDate @bind-Value="@app.DateOut" class="form-control" />
+
+                <ValidationMessage For="@(() => app.DateOut)" />
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Date In: </label>
+
+            <div>
+
+                <InputDate @bind-Value="@app.DateIn" class="form-control" />
+
+                <ValidationMessage For="@(() => app.DateIn)" />
+
+            </div>
+
+        </div>
+    </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+
+            @ButtonText
+
+        </button>
+    }
+
+        <BackToList Target="apps" />
+
+    </EditForm>
+
+
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+
+    [Parameter] public App app { get; set; }
+
+    [Parameter] public string ButtonText { get; set; } = "Save";
+
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+
+
+    private IList<Job> Jobs;
+
+    private IList<Customer> Customers;
+
+
+
+    protected async override Task OnInitializedAsync()
+
+    {
+
+        Jobs = await _client.GetFromJsonAsync<List<Job>>($"{Endpoints.JobsEndpoint}");
+
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+
+        //app.DateOut = DateTime.Now;
+
+    }
+
+}

@@ -1,0 +1,18 @@
+﻿@page "/descriptions/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>View</h3>
+
+<FormComponent description="description" Disabled="true" />
+
+@code {
+    [Parameter] public int id { get; set; }
+    Description description = new Description();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        description = await _client.GetFromJsonAsync<Description>($"{Endpoints.DescriptionsEndpoint}/{id}");
+    }
+
+}

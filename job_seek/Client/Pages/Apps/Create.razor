@@ -1,0 +1,174 @@
+﻿@page "/apps/create/"
+
+@inject HttpClient _client
+
+@inject NavigationManager _navManager
+
+
+<h3 class="card-title">App</h3>
+
+<hr />
+
+<br />
+
+<FormComponent ButtonText="Create App" app="app" OnValidSubmit="@CreateApp" />
+
+<EditForm Model="@app" OnValidSubmit="CreateApp">
+
+    <DataAnnotationsValidator />
+
+    <ValidationSummary />
+
+
+
+    <div class="form-group">
+
+        <label>Job: </label>
+
+        <div>
+
+            <InputSelect @bind-Value="app.JobId" class="form-control">
+
+                <option value="">-- Select Job --</option>
+
+                @if (Jobs != null)
+
+                {
+
+                    foreach (var vehicle in Jobs)
+
+                    {
+
+                        <option value="@vehicle.Id">@vehicle.Make.Name @vehicle.Model.Name - @vehicle.LicensePlateNumber </option>
+
+                    }
+
+                }
+
+            </InputSelect>
+
+            <ValidationMessage For="@(() => app.JobId)" />
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label>Customer: </label>
+
+        <div>
+
+            <InputSelect @bind-Value="app.CustomerId" class="form-control">
+
+                <option value="">-- Select Customer --</option>
+
+                @if (Customers != null)
+
+                {
+
+                    foreach (var customer in Customers)
+
+                    {
+
+                        <option value="@customer.Id">@customer.FirstName - @customer.DrivingLicense </option>
+
+                    }
+
+                }
+
+            </InputSelect>
+
+            <ValidationMessage For="@(() => app.CustomerId)" />
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+
+        <label>Date Out: </label>
+
+        <div>
+
+            <InputDate @bind-Value="@app.DateOut" class="form-control" />
+
+            <ValidationMessage For="@(() => app.DateOut)" />
+
+        </div>
+
+    </div>
+
+
+
+    @if (app.Id > 0)
+
+    {
+
+        <div class="form-group">
+
+            <label>Date In: </label>
+
+            <div>
+
+                <InputDate @bind-Value="@app.DateIn" class="form-control" />
+
+                <ValidationMessage For="@(() => app.DateIn)" />
+
+            </div>
+
+        </div>
+
+    }
+
+
+
+<button type="submit" class="btn btn-success btn-block">
+
+    Create New App
+
+</button>
+
+</EditForm>
+
+
+
+@code {
+
+    App app = new App();
+
+    private IList<Job> Jobs;
+
+    private IList<Customer> Customers;
+
+
+
+    protected async override Task OnInitializedAsync()
+
+    {
+
+        Jobs = await _client.GetFromJsonAsync<List<Job>>($"{Endpoints.JobsEndpoint}");
+
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+
+        //app.DateOut = DateTime.Now;
+
+    }
+
+
+
+    private async Task CreateApp()
+
+    {
+
+        await _client.PostAsJsonAsync(Endpoints.AppsEndpoint, app);
+
+        _navManager.NavigateTo("/apps/");
+
+    }
+
+}

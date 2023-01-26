@@ -1,19 +1,19 @@
-﻿@page "/vehicles/"
+﻿@page "/jobs/"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<h3 class="card-title"> Car Vehicles</h3>
-<a href="/vehicles/create" class="btn btn-secondary">
+<h3 class="card-title"> Jobs</h3>
+<a href="/jobs/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
-    Create New Vehicle
-</a>
+    Create New Job
+    </a>
 <br />
 <br />
 
-@if (Vehicles == null)
+@if (Jobs == null)
 {
-    <div class="alert alert-info">Loading Vehicles...</div>
+    <div class="alert alert-info">Loading Jobs...</div>
 }
 else
 {
@@ -21,28 +21,28 @@ else
         <thead>
             <tr>
                 <th> Make </th>
-                <th> Model </th>
+                <th> Company </th>
                 <th> Year </th>
-                <th> License Plate Number </th>
+                <th> Locaiton </th>
                 <th> Actions </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var vehicle in Vehicles)
+            @foreach (var job in Jobs)
             {
                 <tr>
-                    <td> @vehicle.Make.Name </td>
-                    <td> @vehicle.Model.Name </td>
-                    <td> @vehicle.Year </td>
-                    <td> @vehicle.LicensePlateNumber </td>
+                    <td> @job.Make.Name </td>
+                    <td> @job.Company.Name </td>
+                    <td> @job.Year </td>
+                    <td> @job.Location </td>
                     <td>
-                        <a href="/vehicles/view/@vehicle.Id" class="btn btn-primary">
+                        <a href="/jobs/view/@job.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/vehicles/edit/@vehicle.Id" class="btn btn-warning">
+                        <a href="/jobs/edit/@job.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(vehicle.Id))">
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(job.Id))">
                             <span class="oi oi-delete"></span>
                         </button>
                     </td>
@@ -53,20 +53,20 @@ else
 }
 
 @code {
-    private List<Vehicle> Vehicles;
+    private List<Job> Jobs;
 
     protected async override Task OnInitializedAsync()
     {
-        Vehicles = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.VehiclesEndpoint}");
+        Jobs = await _client.GetFromJsonAsync<List<Job>>($"{Endpoints.JobsEndpoint}");
     }
 
-    async Task Delete(int vehicleId)
+    async Task Delete(int jobId)
     {
-        var vehicle = Vehicles.First(q => q.Id == vehicleId);
-        var confirm = await js.InvokeAsync<bool>("Confirm", $"Do you want to delete {vehicle.LicensePlateNumber}?");
+        var job = Jobs.First(q => q.Id == jobId);
+        var confirm = await js.InvokeAsync<bool>("Confirm", $"Do you want to delete {job.Location}?");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.VehiclesEndpoint}/{vehicleId}");
+            await _client.DeleteAsync($"{Endpoints.JobsEndpoint}/{jobId}");
             await OnInitializedAsync();
         }
     }

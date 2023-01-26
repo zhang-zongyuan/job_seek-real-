@@ -1,4 +1,4 @@
-﻿using job_seek.Shared.Domain;
+﻿using CarRentalManagement.Shared.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,7 +16,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
                  new Make
                  {
                      Id = 1,
-                     Name = "Engineer",
+                     Name = "BMW",
                      DateCreated = DateTime.Now,
                      DateUpdated = DateTime.Now,
                      CreatedBy = "System",
@@ -25,7 +25,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
                  new Make
                  {
                      Id = 2,
-                     Name = "Job",
+                     Name = "Toyota",
                      DateCreated = DateTime.Now,
                      DateUpdated = DateTime.Now,
                      CreatedBy = "System",

@@ -1,19 +1,19 @@
-﻿@page "/models/"
+﻿@page "/companys/"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<h3 class="card-title"> Car Models</h3>
-<a href="/models/create" class="btn btn-secondary">
+<h3 class="card-title"> Car Companys</h3>
+<a href="/companys/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
-    Create New Model
+    Create New Company
 </a>
 <br />
 <br />
 
-@if (Models == null)
+@if (Companys == null)
 {
-    <div class="alert alert-info">Loading Models...</div>
+    <div class="alert alert-info">Loading Companys...</div>
 }
 else
 {
@@ -25,18 +25,18 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var model in Models)
+            @foreach (var company in Companys)
             {
                 <tr>
-                    <td> @model.Name </td>
+                    <td> @company.Name </td>
                     <td>
-                        <a href="/models/view/@model.Id" class="btn btn-primary">
+                        <a href="/companys/view/@company.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/models/edit/@model.Id" class="btn btn-warning">
+                        <a href="/companys/edit/@company.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(model.Id))">
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(company.Id))">
                             <span class="oi oi-delete"></span>
                         </button>
                     </td>
@@ -47,20 +47,20 @@ else
 }
 
 @code {
-    private List<Model> Models;
+    private List<Company> Companys;
 
     protected async override Task OnInitializedAsync()
     {
-        Models = await _client.GetFromJsonAsync<List<Model>>($"{Endpoints.ModelsEndpoint}");
+        Companys = await _client.GetFromJsonAsync<List<Company>>($"{Endpoints.CompanysEndpoint}");
     }
 
-    async Task Delete(int modelId)
+    async Task Delete(int companyId)
     {
-        var model = Models.First(q => q.Id == modelId);
-        var confirm = await js.InvokeAsync<bool>("Confirm", $"Do you want to delete {model.Name}?");
+        var company = Companys.First(q => q.Id == companyId);
+        var confirm = await js.InvokeAsync<bool>("Confirm", $"Do you want to delete {company.Name}?");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.ModelsEndpoint}/{modelId}");
+            await _client.DeleteAsync($"{Endpoints.CompanysEndpoint}/{companyId}");
             await OnInitializedAsync();
         }
     }

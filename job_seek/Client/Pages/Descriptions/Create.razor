@@ -8,7 +8,6 @@
 <br />
 
 <FormComponent ButtonText="Create Description" description="description" OnValidSubmit="@CreateDescription" />
-
 @*
 <EditForm Model="@description" OnValidSubmit="CreateDescription">
     <DataAnnotationsValidator />
@@ -30,7 +29,6 @@
 
 @code {
     Description description = new Description();
-
     private async Task CreateDescription()
     {
         await _client.PostAsJsonAsync(Endpoints.DescriptionsEndpoint, description);

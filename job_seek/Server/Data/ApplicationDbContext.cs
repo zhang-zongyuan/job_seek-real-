@@ -1,4 +1,4 @@
-﻿using CarRentalManagement.Server.Configurations.Entities;
+﻿using job_seek.Server.Configurations.Entities;
 using IdentityServer4.EntityFramework.Options;
 using job_seek.Server.Configurations.Entities;
 using job_seek.Server.Models;

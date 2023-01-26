@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace job_seek.Server.Configurations.Entities
 {
-    public class DescriptionSeed : IEntityTypeConfiguration<DescriptionSeed>
+    public class DescriptionSeedConfiguration : IEntityTypeConfiguration<DescriptionSeedConfiguration>
     {
-        public void Configure(EntityTypeBuilder<DescriptionSeed> builder)
+        public void Configure(EntityTypeBuilder<DescriptionSeedConfiguration> builder)
         {
             builder.HasData(
                  new Description

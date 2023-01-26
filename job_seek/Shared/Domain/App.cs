@@ -13,8 +13,8 @@ namespace job_seek.Shared.Domain
         public int? MakeId { get; set; }
 
         [Required]
-        public int? VehicleId { get; set; }
-        public virtual Vehicle Vehicle { get; set; }
+        public int? JobId { get; set; }
+        public virtual Job Job { get; set; }
 
         [Required]
         public int? CustomerId { get; set; }

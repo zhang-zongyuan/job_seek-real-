@@ -1,4 +1,4 @@
-﻿<EditForm Model="@model" OnValidSubmit="@OnValidSubmit">
+﻿<EditForm Company="@company" OnValidSubmit="@OnValidSubmit">
 
     <DataAnnotationsValidator />
 
@@ -12,9 +12,9 @@
 
             <div>
 
-                <InputText @bind-Value="@model.Name" class="form-control" />
+                <InputText @bind-Value="@company.Name" class="form-control" />
 
-                <ValidationMessage For="@(() => model.Name)" />
+                <ValidationMessage For="@(() => company.Name)" />
 
             </div>
 
@@ -32,7 +32,7 @@
         </button>
     }
 
-        <BackToList Target="models" />
+        <BackToList Target="companys" />
 
     </EditForm>
 
@@ -41,7 +41,7 @@
 @code {
     [Parameter] public bool Disabled { get; set; } = false;
 
-    [Parameter] public Model model { get; set; }
+    [Parameter] public Company company { get; set; }
 
     [Parameter] public string ButtonText { get; set; } = "Save";
 

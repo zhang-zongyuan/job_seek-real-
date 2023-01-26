@@ -1,5 +1,117 @@
-﻿<h3>Create</h3>
+﻿@page "/jobs/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Job</h3>
+<hr />
+<br />
+
+<FormComponent ButtonText="Create Job" job="job" OnValidSubmit="@CreateJob" />
+
+@*
+<EditForm Company="@job" OnValidSubmit="CreateJob">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Make: </label>
+        <div>
+            <InputSelect @bind-Value="job.MakeId" class="form-control">
+                <option value="">-- Select Make --</option>
+                @if (Makes != null)
+                {
+                    foreach (var make in Makes)
+                    {
+                        <option value="@make.Id">@make.Name</option>
+                    }
+                }
+
+            </InputSelect>
+            <ValidationMessage For="@(() => job.MakeId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company: </label>
+        <div>
+            <InputSelect @bind-Value="job.CompanyId" class="form-control">
+                <option value="">-- Select Company --</option>
+                @if (Companys != null)
+                {
+                    foreach (var model in Companys)
+                    {
+                        <option value="@model.Id">@model.Name</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => job.CompanyId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Description: </label>
+        <div>
+            <InputSelect @bind-Value="job.DescriptionId" class="form-control">
+                <option value="">-- Select Description --</option>
+                @if (Descriptions != null)
+                {
+                    foreach (var colour in Descriptions)
+                    {
+                        <option value="@colour.Id">@colour.Name</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => job.DescriptionId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Year: </label>
+        <div>
+            <InputNumber @bind-Value="@job.Year" class="form-control" />
+            <ValidationMessage For="@(() => job.Year)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>License Plate Number: </label>
+        <div>
+            <InputText @bind-Value="@job.LicensePlateNumber" class="form-control" />
+            <ValidationMessage For="@(() => job.LicensePlateNumber)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Daily Rate: </label>
+        <div>
+            <InputNumber @bind-Value="@job.RentalRate" class="form-control" />
+            <ValidationMessage For="@(() => job.RentalRate)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create New Job
+    </button>
+</EditForm>
+*@
 
 @code {
+
+    Job job = new Job();
+    private IList<Make> Makes;
+    private IList<Company> Companys;
+    private IList<Description> Descriptions;
+    protected async override Task OnInitializedAsync()
+    {
+        Makes = await _client.GetFromJsonAsync<List<Make>>($"{Endpoints.MakesEndpoint}");
+        Companys = await _client.GetFromJsonAsync<List<Company>>($"{Endpoints.CompanysEndpoint}");
+        Descriptions = await _client.GetFromJsonAsync<List<Description>>($"{Endpoints.DescriptionsEndpoint}");
+    }
+
+    private async Task CreateJob()
+    {
+        await _client.PostAsJsonAsync(Endpoints.JobsEndpoint, job);
+        _navManager.NavigateTo("/jobs/");
+    }
 
 }

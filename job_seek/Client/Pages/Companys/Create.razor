@@ -1,5 +1,39 @@
-﻿<h3>Create</h3>
+﻿@page "/Companys/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Companys</h3>
+<hr />
+<br />
+
+<FormComponent ButtonText="Create Company" company="company" OnValidSubmit="@CreateCompany" />
+
+@*
+<EditForm Company="@company" OnValidSubmit="CreateCompany">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name: </label>
+        <div>
+            <InputText @bind-Value="@company.Name" class="form-control" />
+            <ValidationMessage For="@(() => company.Name)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create New Company
+    </button>
+</EditForm>
+*@
 
 @code {
+    Company company = new Company();
+
+    private async Task CreateCompany()
+    {
+        await _client.PostAsJsonAsync(Endpoints.CompanysEndpoint, company);
+        _navManager.NavigateTo("/companys/");
+    }
 
 }

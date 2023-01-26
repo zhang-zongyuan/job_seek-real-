@@ -1,4 +1,5 @@
-﻿using job_seek.Server.Data;
+﻿using job_seek.Shared.Domain;
+using job_seek.Server.Data;
 using job_seek.Server.IRepository;
 using job_seek.Server.Models;
 using job_seek.Shared.Domain;
@@ -17,12 +18,12 @@ namespace job_seek.Server.Repository
     {
         private readonly ApplicationDbContext _context;
         private IGenericRepository<Make> _makes;
-        private IGenericRepository<Model> _models;
+        private IGenericRepository<Company> _companys;
         private IGenericRepository<Description> _descriptions;
         private IGenericRepository<App> _apps;
         private IGenericRepository<Customer> _customers;
-        private IGenericRepository<Vehicle> _vehicles;
-
+        private IGenericRepository<Staff> _staffs;
+        private IGenericRepository<Job> _jobs;
         private UserManager<ApplicationUser> _userManager;
 
         public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
@@ -33,16 +34,19 @@ namespace job_seek.Server.Repository
 
         public IGenericRepository<Make> Makes
             => _makes ??= new GenericRepository<Make>(_context);
-        public IGenericRepository<Model> Models
-            => _models ??= new GenericRepository<Model>(_context);
+        public IGenericRepository<Company> Companys
+            => _companys ??= new GenericRepository<Company>(_context);
         public IGenericRepository<Description> Descriptions
             => _descriptions ??= new GenericRepository<Description>(_context);
-        public IGenericRepository<Vehicle> Vehicles
-            => _vehicles ??= new GenericRepository<Vehicle>(_context);
+        public IGenericRepository<Job> Jobs
+            => _jobs ??= new GenericRepository<Job>(_context);
         public IGenericRepository<App> Apps
             => _apps ??= new GenericRepository<App>(_context);
         public IGenericRepository<Customer> Customers
             => _customers ??= new GenericRepository<Customer>(_context);
+
+        public IGenericRepository<Staff> Staffs 
+            => _staffs ??= new GenericRepository<Staff>(_context);
 
         public void Dispose()
         {

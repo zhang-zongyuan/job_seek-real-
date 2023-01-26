@@ -11,10 +11,11 @@ namespace job_seek.Server.IRepository
     {
         Task Save(HttpContext httpContext);
         IGenericRepository<Make> Makes { get; }
-        IGenericRepository<Model> Models { get; }
-        IGenericRepository<Vehicle> Vehicles { get; }
+        IGenericRepository<Company> Companys { get; }
+        IGenericRepository<Job> Jobs { get; }
         IGenericRepository<Description> Descriptions { get; }
         IGenericRepository<App> Apps { get; }
+        IGenericRepository<Staff> Staffs { get; }
         IGenericRepository<Customer> Customers { get; }
     }
 }

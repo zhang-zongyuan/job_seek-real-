@@ -2,7 +2,6 @@
 using job_seek.Server.Data;
 using job_seek.Server.IRepository;
 using job_seek.Server.Models;
-using job_seek.Shared.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

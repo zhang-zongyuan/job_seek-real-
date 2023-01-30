@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using job_seek.Server.Data;
 using job_seek.Shared.Domain;
 using job_seek.Server.IRepository;
-using job_seek.Server.IRepository;
-using job_seek.Shared.Domain;
 
 namespace job_seek.Server.Controllers
 {

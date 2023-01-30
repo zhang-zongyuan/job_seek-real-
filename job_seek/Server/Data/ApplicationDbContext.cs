@@ -1,6 +1,5 @@
 ﻿using job_seek.Server.Configurations.Entities;
 using IdentityServer4.EntityFramework.Options;
-using job_seek.Server.Configurations.Entities;
 using job_seek.Server.Models;
 using job_seek.Shared.Domain;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -35,9 +34,9 @@ namespace job_seek.Server.Data
             builder.ApplyConfiguration(new DescriptionSeedConfiguration());
             builder.ApplyConfiguration(new MakeSeedConfiguration());
             builder.ApplyConfiguration(new CompanySeedConfiguration());
-            builder.ApplyConfiguration(new RoleSeedConfiguration());
             builder.ApplyConfiguration(new UserSeedConfiguration());
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
+            builder.ApplyConfiguration(new RoleSeedConfiguration());
         }
     }
 }

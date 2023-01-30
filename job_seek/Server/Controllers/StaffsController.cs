@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CarRentalManagement.Server.Data;
-using CarRentalManagement.Shared.Domain;
-using CarRentalManagement.Server.IRepository;
+using job_seek.Server.Data;
+using job_seek.Shared.Domain;
+using job_seek.Server.IRepository;
 
-namespace CarRentalManagement.Server.Controllers
+namespace job_seek.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

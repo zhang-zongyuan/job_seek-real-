@@ -16,20 +16,14 @@ namespace job_seek.Server.Configurations.Entities
                  new Description
                  {
                      Id = 1,
-                     Name = "DescriptionA",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "DescriptionA"
+
                  },
                  new Description
                  {
                      Id = 2,
-                     Name = "DescriptionB",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "DescriptionB"
+
                  }
             );
         }

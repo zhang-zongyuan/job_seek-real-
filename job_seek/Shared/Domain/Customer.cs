@@ -15,7 +15,7 @@ namespace job_seek.Shared.Domain
 
         [Required]
         [RegularExpression(@"^[STFGstfg]\d{7}[A-Za-z]", ErrorMessage = "Driving License does not meet NRIC requirements")] //NRIC Regular Expression
-        public string DrivingLicense { get; set; }
+        public string Resume { get; set; }
 
         //Address is not a required property, it is intentionally not given any data annotations
         public string Address { get; set; }

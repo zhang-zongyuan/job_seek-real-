@@ -1,4 +1,4 @@
-﻿using CarRentalManagement.Shared.Domain;
+﻿using job_seek.Shared.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarRentalManagement.Server.Configurations.Entities
+namespace job_seek.Server.Configurations.Entities
 {
     public class MakeSeedConfiguration : IEntityTypeConfiguration<Make>
     {
@@ -16,20 +16,14 @@ namespace CarRentalManagement.Server.Configurations.Entities
                  new Make
                  {
                      Id = 1,
-                     Name = "BMW",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "BMW"
+
                  },
                  new Make
                  {
                      Id = 2,
-                     Name = "Toyota",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "Toyota"
+
                  }
             );
         }

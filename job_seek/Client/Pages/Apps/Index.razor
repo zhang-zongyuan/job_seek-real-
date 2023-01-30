@@ -34,7 +34,8 @@ else
             {
             <tr>
                 <td> @app.Id </td>
-                <td> @app.Customer.DrivingLicense </td>
+                <td> @app.Customer.Resume </td>
+                <td> @app.Customer.Resume </td>
                 <td> @app.DateCreated.Date.ToString("dd MMMM yyyy") </td>
                 <td>@(app.DateIn != null ? (app.DateIn.Value - app.DateOut).TotalDays.ToString() : "To Be Determined")</td>
                 <td> @app.Job.Location </td>

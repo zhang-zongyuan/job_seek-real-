@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarRentalManagement.Server.Configurations.Entities
+namespace job_seek.Server.Configurations.Entities
 {
     public class UserRoleSeedConfiguration : IEntityTypeConfiguration<IdentityUserRole<string>>
     {

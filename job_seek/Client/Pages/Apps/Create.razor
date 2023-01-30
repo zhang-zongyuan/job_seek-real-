@@ -35,11 +35,11 @@
 
                 {
 
-                    foreach (var vehicle in Jobs)
+                    foreach (var job in Jobs)
 
                     {
 
-                        <option value="@vehicle.Id">@vehicle.Make.Name @vehicle.Model.Name - @vehicle.LicensePlateNumber </option>
+                        <option value="@job.Id">@job.Make.Name @job.Company.Name - @job.Location </option>
 
                     }
 
@@ -73,7 +73,7 @@
 
                     {
 
-                        <option value="@customer.Id">@customer.FirstName - @customer.DrivingLicense </option>
+                        <option value="@customer.Id">@customer.FirstName - @customer.Resume </option>
 
                     }
 

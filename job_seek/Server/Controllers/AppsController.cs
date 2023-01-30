@@ -34,7 +34,7 @@ namespace job_seek.Server.Controllers
         //public async TaskActionResult<IEnumerable<App>>>GetApps()
         public async Task<IActionResult> GetApps()
         {
-            return NotFound();
+            //return NotFound();
             //Refactored
             //return await _context.Apps.TolistAsync
             var Apps = await _unitOfWork.Apps.GetAll();

@@ -1,4 +1,4 @@
-﻿using CarRentalManagement.Server.Models;
+﻿using job_seek.Server.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarRentalManagement.Server.Configurations.Entities
+namespace job_seek.Server.Configurations.Entities
 {
     public class UserSeedConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarRentalManagement.Server.Configurations.Entities
+namespace job_seek.Server.Configurations.Entities
 {
     public class JobSeedConfiguration : IEntityTypeConfiguration<Job>
     {
@@ -16,38 +16,34 @@ namespace CarRentalManagement.Server.Configurations.Entities
                  new Job
                  {
                      Id = 1,
-                     Name = "3 Series",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Year = 1,
+                     Location = "3 Series",
+                     MakeId= 1
+
                  },
                  new Job
                  {
                      Id = 2,
-                     Name = "X5",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Year = 2,
+                     Location = "X5",
+                     MakeId = 2
+
                  },
                  new Job
                  {
                      Id = 3,
-                     Name = "Prius",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Year = 3,
+                     Location = "Prius",
+                     MakeId = 3
+
                  },
                  new Job
                  {
                      Id = 4,
-                     Name = "Rav4",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Year = 4,
+                     Location = "Rav4",
+                     MakeId = 4
+
                  }
             );
         }

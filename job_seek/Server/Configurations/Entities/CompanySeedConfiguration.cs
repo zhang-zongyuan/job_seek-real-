@@ -16,38 +16,22 @@ namespace job_seek.Server.Configurations.Entities
                  new Company
                  {
                      Id = 1,
-                     Name = "3 Series",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "3 Series"
                  },
                  new Company
                  {
                      Id = 2,
-                     Name = "X5",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "X5"
                  },
                  new Company
                  {
                      Id = 3,
-                     Name = "Prius",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "Prius"
                  },
                  new Company
                  {
                      Id = 4,
-                     Name = "Rav4",
-                     DateCreated = DateTime.Now,
-                     DateUpdated = DateTime.Now,
-                     CreatedBy = "System",
-                     UpdatedBy = "System"
+                     Name = "Rav4"
                  }
             );
         }

@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using job_seek.Server.Data;
 using job_seek.Shared.Domain;
 using job_seek.Server.IRepository;
-using System.Drawing;
 
 namespace job_seek.Server.Controllers
 {
@@ -37,7 +36,7 @@ namespace job_seek.Server.Controllers
         public async Task<IActionResult> GetDescriptions()
         {
             //To be deleted or comment after testing the Global Error Handling
-           // return NotFound();
+ //           return NotFound();
             //Refactored
             //return await _context.Descriptions.TolistAsync
             var Descriptions = await _unitOfWork.Descriptions.GetAll();

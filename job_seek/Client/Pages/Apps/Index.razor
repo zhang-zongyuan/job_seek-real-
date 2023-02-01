@@ -2,9 +2,8 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-@implements IDisposable
 
-<h3 class="card-title"> Car Apps</h3>
+<h3 class="card-title"> Apps</h3>
 <a href="/apps/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
     Create New App
@@ -22,10 +21,10 @@ else
         <thead>
             <tr>
                 <th> App Id </th>
-                <th> Customer License </th>
+                <th> Customer  </th>
                 <th> Date </th>
                 <th> Duration in days </th>
-                <th> Plate Number </th>
+                <th> Comapny Name </th>
                 <th> Actions </th>
             </tr>
         </thead>
@@ -67,15 +66,7 @@ else
         Apps = await _client.GetFromJsonAsync<List<App>>($"{Endpoints.AppsEndpoint}");
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        await js.InvokeVoidAsync("AddDataTable", "#appsTable");
-    }
 
-    public void Dispose()
-    {
-        js.InvokeVoidAsync("DataTablesDispose", "#appsTable");
-    }
 
     async Task Delete(int appId)
     {
